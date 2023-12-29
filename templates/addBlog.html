@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}<title>Add Blog's</title>{% endblock title %}
+
+{% block body %}
+
+{% for message in messages %}  
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>Massage!</strong> {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
+<div class="container my-3">
+    <h1 class="text-center">Add Blog's</h1>
+    <form action="{% url 'addBlog' %}" method="POST">
+        {% csrf_token %}
+    <div class="mb-3 form-group">
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
+      </div>
+      <div class="mb-3 form-group">
+        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+        <textarea class="form-control" name="des" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <input type="submit" value="Post" class="btn btn-primary">
+    </form>
+</div>
+
+{% endblock body %}
